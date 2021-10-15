@@ -1,3 +1,19 @@
+# Permissions
+We need to configure some scopes to configure resources (Bot tokens):
+
+## We need these permissions scopes:
+- channels:manage
+- groups:write
+- im:write
+- mpim:write
+- channels:read
+- groups:read
+- im:read
+- mpim:read
+
+## Environment
+Export SLACK_TOKEN with your slack token
+
 # slack Pulumi Provider
 
 This repo is a boilerplate showing how to create a native Pulumi provider.  You can search-replace `slack` with the name of your desired provider as a starting point for creating a provider that manages resources in the target cloud.

@@ -71,8 +71,7 @@ python_sdk::
 		cd ./bin && python3 setup.py build sdist
 
 .PHONY: build
-# build:: gen provider dotnet_sdk go_sdk nodejs_sdk python_sdk
-build:: gen provider go_sdk
+build:: gen provider dotnet_sdk go_sdk nodejs_sdk python_sdk
 
 # Required for the codegen action that runs in pulumi/pulumi
 only_build:: build
@@ -83,8 +82,7 @@ lint::
 	done
 
 
-# install:: install_nodejs_sdk install_dotnet_sdk
-install::
+install:: install_nodejs_sdk install_dotnet_sdk
 	cp $(WORKING_DIR)/bin/${PROVIDER} ${GOPATH}/bin
 
 

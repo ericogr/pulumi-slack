@@ -5,18 +5,26 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export * from "./conversation";
+export * from "./lookupUser";
 export * from "./provider";
-export * from "./random";
+
+// Export sub-modules:
+import * as types from "./types";
+
+export {
+    types,
+};
 
 // Import resources to register:
-import { Random } from "./random";
+import { Conversation } from "./conversation";
 
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "slack:index:Random":
-                return new Random(name, <any>undefined, { urn })
+            case "slack:index:Conversation":
+                return new Conversation(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }

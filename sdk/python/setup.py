@@ -39,6 +39,7 @@ def readme():
 
 setup(name='pulumi_slack',
       version=VERSION,
+      description="A Pulumi provider to create and manage slack resources.",
       long_description=readme(),
       long_description_content_type='text/markdown',
       cmdclass={

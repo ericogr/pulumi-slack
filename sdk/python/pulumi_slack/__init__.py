@@ -5,8 +5,10 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .conversation import *
+from .lookup_user import *
 from .provider import *
-from .random import *
+from . import outputs
 _utilities.register(
     resource_modules="""
 [
@@ -15,7 +17,7 @@ _utilities.register(
   "mod": "index",
   "fqn": "pulumi_slack",
   "classes": {
-   "slack:index:Random": "Random"
+   "slack:index:Conversation": "Conversation"
   }
  }
 ]
