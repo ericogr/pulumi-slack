@@ -66,6 +66,7 @@ func (k *slackProvider) DiffConfig(_ context.Context, req *pulumirpc.DiffRequest
 // Configure configures the resource provider with "globals" that control its behavior.
 func (k *slackProvider) Configure(_ context.Context, req *pulumirpc.ConfigureRequest) (*pulumirpc.ConfigureResponse, error) {
 	sc := SlackConfig{}
+	sc.Config = make(map[string]string)
 	for key, val := range req.GetVariables() {
 		sc.Config[strings.TrimPrefix(key, "slack:config:")] = val
 	}

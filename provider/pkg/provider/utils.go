@@ -50,7 +50,7 @@ func (sc *SlackConfig) getConfig(configName, envName string) string {
 }
 
 func (sc *SlackConfig) getSlackToken() (*string, error) {
-	token := sc.getConfig("slack_token", "SLACK_TOKEN")
+	token := sc.getConfig("token", "SLACK_TOKEN")
 
 	if len(token) == 0 {
 		return nil, fmt.Errorf("no slack token found")
