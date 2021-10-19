@@ -1,30 +1,48 @@
 # Permissions
 We need to configure some scopes to configure resources (Bot tokens):
 
-## We need these permissions scopes:
-- channels:manage
-- groups:write
-- im:write
-- mpim:write
-- channels:read
-- groups:read
-- im:read
-- mpim:read
 
+1. Open https://api.slack.com/apps
+2. Create new App
+3. Configure App Name and Workspace to develop
+4. Use the manifest below
+```yaml
+_metadata:
+  major_version: 1
+  minor_version: 1
+display_information:
+  name: pulumi-resource-slack
+features:
+  bot_user:
+    display_name: pulumi-resource-slack
+    always_online: false
+oauth_config:
+  scopes:
+    bot:
+      - channels:manage
+      - groups:write
+      - im:write
+      - mpim:write
+      - groups:read
+      - channels:read
+      - im:read
+      - mpim:read
+settings:
+  org_deploy_enabled: false
+  socket_mode_enabled: false
+  token_rotation_enabled: false
+```
+5. Open menu Oauth & Permissions
+6. Click on Install to Workspace and allow requested permissions
+7. Copy the bot user oauth token to be used by provider
+
+## Other tips
+If you are facing problems to manage channel members, even if you add permission scopes to the bot user, check the channel management.
+
+https://<workspace>.slack.com/admin/settings#channel_management_restrictions
+ 
 ## Environment
 Export SLACK_TOKEN with your slack token
-
-# slack Pulumi Provider
-
-This repo is a boilerplate showing how to create a native Pulumi provider.  You can search-replace `slack` with the name of your desired provider as a starting point for creating a provider that manages resources in the target cloud.
-
-Most of the code for the provider implementation is in `pkg/provider/provider.go`.  
-
-An example of using the single resource defined in this example is in `examples/simple`.
-
-A code generator is available which generates SDKs in TypeScript, Python, Go and .NET which are also checked in to the `sdk` folder.  The SDKs are generated from a schema in `provider/cmd/pulumi-resource-slack/schema.json`.  This file should be kept aligned with the resources, functions and types supported by the provider implementation.
-
-Note that the generated provider plugin (`pulumi-resource-slack`) must be on your `PATH` to be used by Pulumi deployments.  If creating a provider for distribution to other users, you should ensure they install this plugin to their `PATH`.
 
 ## Pre-requisites
 
@@ -39,16 +57,9 @@ Install the `pulumictl` cli from the [releases](https://github.com/pulumi/pulumi
 $ make build install
 
 # test
-$ cd examples/simple
+$ cd examples/ts
 $ yarn link @pulumi/slack
 $ yarn install
 $ pulumi stack init test
 $ pulumi up
 ```
-
-## References
-
-Other resources for learning about the Pulumi resource model:
-* [Pulumi Kubernetes provider](https://github.com/pulumi/pulumi-kubernetes/blob/master/provider/pkg/provider/provider.go)
-* [Pulumi Terraform Remote State provider](https://github.com/pulumi/pulumi-terraform/blob/master/provider/cmd/pulumi-resource-terraform/provider.go)
-* [Dynamic Providers](https://www.pulumi.com/docs/intro/concepts/programming-model/#dynamicproviders)
