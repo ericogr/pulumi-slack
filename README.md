@@ -1,5 +1,5 @@
 # Permissions
-We need to configure some scopes to configure resources (Bot tokens):
+We need to configure some scopes to manage resources (Bot tokens):
 
 
 1. Open https://api.slack.com/apps
@@ -39,12 +39,20 @@ settings:
 ## Other tips
 If you are facing problems to manage channel members, even if you add permission scopes to the bot user, check the channel management.
 
-https://<workspace>.slack.com/admin/settings#channel_management_restrictions
+https://YOUR-WORKSPACE-HERE.slack.com/admin/settings#channel_management_restrictions
  
 ## Environment
-Export SLACK_TOKEN with your slack token
+You need to set Slack token with:
 
-## Pre-requisites
+```sh
+export SLACK_TOKEN xoxb-2271973586641-3369578963123-hngThgT5dq4W7vmHdzd91T3H
+```
+or
+```sh
+pulumi config set --secret slack:config:token xoxb-2271973586641-3369578963123-hngThgT5dq4W7vmHdzd91T3H
+```
+
+## Pre-requisites to develop
 
 Install the `pulumictl` cli from the [releases](https://github.com/pulumi/pulumictl/releases) page or follow the [install instructions](https://github.com/pulumi/pulumictl#installation)
 
