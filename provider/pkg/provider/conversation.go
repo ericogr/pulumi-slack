@@ -313,7 +313,7 @@ func (c *SlackConversationResource) createConversation(input SlackConversationIn
 		if err != nil {
 			return nil, err
 		}
-		logger.V(9).Infof("Set channel archive id [%s] with [%s]\n", channel.ID, input.IsArchived)
+		logger.V(9).Infof("Set channel archive id [%s] with [%t]\n", channel.ID, input.IsArchived)
 	}
 
 	return &channel.ID, nil

@@ -8,13 +8,13 @@ import (
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
 		user1, err := slack.LookupUser(ctx, &slack.LookupUserArgs{
-			Email: "user1@gmail.com.br",
+			Email: "user1@gmail.com",
 		})
 		if err != nil {
 			return err
 		}
 		user2, err := slack.LookupUser(ctx, &slack.LookupUserArgs{
-			Email: "user2@gmail.com.br",
+			Email: "user2@gmail.com",
 		})
 		if err != nil {
 			return err

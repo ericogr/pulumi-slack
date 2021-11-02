@@ -3,7 +3,6 @@ package provider
 import (
 	"fmt"
 
-	pslack "github.com/ericogr/pulumi-slack/sdk/v3/go/slack"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource/plugin"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
@@ -11,6 +10,12 @@ import (
 	rpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
 	"github.com/slack-go/slack"
 )
+
+type User struct {
+	Email string `pulumi:"email"`
+	Id    string `pulumi:"id"`
+	Name  string `pulumi:"name"`
+}
 
 type SlackUserFunction struct {
 	config SlackConfig
@@ -24,7 +29,7 @@ func (u *SlackUserFunction) Configure(config SlackConfig) {
 	u.config = config
 }
 
-func (c *SlackUserFunction) lookupUser(email string) (*pslack.User, error) {
+func (c *SlackUserFunction) lookupUser(email string) (*User, error) {
 	token, err := c.config.getSlackToken()
 	if err != nil {
 		return nil, err
@@ -37,7 +42,7 @@ func (c *SlackUserFunction) lookupUser(email string) (*pslack.User, error) {
 		return nil, err
 	}
 
-	return &pslack.User{
+	return &User{
 		Id:    user.ID,
 		Name:  user.Name,
 		Email: user.Profile.Email,
