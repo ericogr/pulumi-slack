@@ -1,4 +1,4 @@
-module github.com/totvs/pulumi-slack/sdk/v3
+module github.com/ericogr/pulumi-slack/sdk/v3
 
 go 1.16
 
